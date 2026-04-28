@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # ============================================================
-# deploy.sh — 何森 personal-portfolio 一键部署脚本
+# deploy.sh — yu personal-portfolio 一键部署脚本
 # 将项目推送到 GitHub Pages
 # ============================================================
 set -euo pipefail
 
-REPO_URL="https://github.com/2689872077/personal-portfolio.git"
+REPO_URL="https://github.com/Treenomad/Personal-portfolio.git"
 BRANCH="main"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -59,14 +59,14 @@ else
     echo "   git push -u origin $BRANCH"
     echo ""
     echo "   或使用令牌认证："
-    echo "   git push https://YOUR_TOKEN@github.com/2689872077/personal-portfolio.git $BRANCH"
+    echo "   git push https://YOUR_TOKEN@github.com/Treenomad/Personal-portfolio.git $BRANCH"
     exit 1
   }
 fi
 
 echo ""
 echo "✅ 部署完成！"
-echo "🌐 访问地址: https://2689872077.github.io/personal-portfolio/"
+echo "🌐 访问地址: https://treenomad.github.io/Personal-portfolio/"
 echo ""
 echo "💡 提示: GitHub Pages 部署需要 1-2 分钟生效"
 echo "   如果看到 404，请稍等片刻后刷新"
