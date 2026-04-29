@@ -1,4 +1,4 @@
-# 何森个人作品集网站
+# yu个人作品集网站
 
 > **VB-002** — 工业自动化解决方案专家个人品牌展示站，通过 GitHub Pages 免费托管。
 
@@ -59,4 +59,4 @@ git push -u origin main
 
 ## 📄 License
 
-MIT © 2026 何森
+MIT © 2026 yu

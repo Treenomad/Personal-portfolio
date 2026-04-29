@@ -1,5 +1,5 @@
 /**
- * 何森个人作品集 — 交互脚本
+   * yu个人作品集 — 交互脚本
  * Features: 导航滚动高亮、移动端菜单、滚动渐显动画、平滑滚动
  */
 (function () {
@@ -107,5 +107,5 @@
   // ===== Trigger initial state =====
   updateActiveNav();
 
-  console.log('🚀 何森的个人作品集已就绪 — https://2689872077.github.io/personal-portfolio/');
+  console.log('🚀 yu的个人作品集已就绪 — https://treenomad.github.io/Personal-portfolio/');
 })();
