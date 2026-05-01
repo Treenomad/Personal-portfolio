@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="yu — 工业自动化解决方案专家 | CQE 质量工程师 | DCS/SIS 系统集成 | 8D 质量分析">
+  <meta property="og:title" content="yu | 简历">
+  <meta property="og:description" content="工业自动化 CQE 质量工程师 | 中控技术">
+  <meta property="og:type" content="website">
+  <title>yu | 简历</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Resume-specific overrides */
+    .resume-header {
+      text-align: center;
+      padding: 60px 0 40px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .resume-header .name {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .resume-header .title {
+      font-size: 1.15rem;
+      color: var(--accent-light);
+      font-weight: 500;
+      margin-top: 8px;
+    }
+    .resume-header .contact-info {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+    .resume-header .contact-info span { display: flex; align-items: center; gap: 6px; }
+    .resume-section {
+      margin-bottom: 40px;
+    }
+    .resume-section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .resume-item {
+      margin-bottom: 24px;
+    }
+    .resume-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .resume-item-header h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .resume-item-header .period {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .resume-item-header .company {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .resume-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .resume-item ul li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    .resume-item ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+    .skills-grid-resume {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .skill-group h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      font-size: 0.8rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      color: var(--text-secondary);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      transition: color var(--transition);
+    }
+    .back-link:hover { color: var(--accent-light); }
+    @media (max-width: 600px) {
+      .skills-grid-resume { grid-template-columns: 1fr; }
+      .resume-header .contact-info { gap: 12px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">HS</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">首页</a></li>
+        <li><a href="#contact-info" class="nav-link">联系</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main style="padding-top: var(--nav-height);">
+    <div class="container" style="max-width: 800px; padding-top: 0;">
+      
+      <a href="index.html" class="back-link">← 返回作品集</a>
+
+      <!-- Header -->
+      <header class="resume-header">
+        <h1 class="name">yu</h1>
+        <p class="title">工业自动化解决方案专家 · CQE 质量工程师</p>
+        <div class="contact-info" id="contact-info">
+          <span>📍 杭州</span>
+          <span>📧 hello@arayucofe.com.cn</span>
+          <span>💻 github.com/Treenomad</span>
+          <span>🏢 中控技术（SUPCON）</span>
+        </div>
+      </header>
+
+      <!-- Summary -->
+      <section class="resume-section">
+        <h2 class="resume-section-title">个人简介</h2>
+        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.8;">
+          任职于中控技术（SUPCON），专注 <strong>DCS（分布式控制系统）</strong>与 <strong>SIS（安全仪表系统）</strong>领域，从客户质量反馈到问题闭环，用 <strong>8D 方法、SPC 统计过程控制、FMEA 失效模式分析</strong>等工具确保每一次交付都经得起工业现场的严苛检验。3 年工业自动化与质量工程经验，致力于将质量思维前移，在系统集成的每一个环节注入预防性质量管控。
+        </p>
+      </section>
+
+      <!-- Experience -->
+      <section class="resume-section">
+        <h2 class="resume-section-title">工作经历</h2>
+        
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>CQE 质量工程师</h3>
+            <span class="period">2023 — 至今</span>
+          </div>
+          <p class="company">中控技术（SUPCON）· 工业自动化与智能制造解决方案</p>
+          <ul>
+            <li>负责 DCS/SIS 系统集成的全流程质量管控，从需求评审到出厂验收，确保符合客户质量标准</li>
+            <li>主导质量问题闭环，运用 8D 方法进行根本原因分析，平均缩短质量问题处理周期 30%</li>
+            <li>建立并维护 SPC 监控体系，实时跟踪关键工序过程能力，Cpk ≥ 1.33 的工序覆盖率达 85%</li>
+            <li>完成 FMEA 分析覆盖新项目高风险工序，制定预防性维护计划，降低现场故障率</li>
+            <li>对接 ISO 9001 体系审核，维护质量记录，确保体系合规运行</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Education -->
+      <section class="resume-section">
+        <h2 class="resume-section-title">教育背景</h2>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>工业自动化 / 质量管理 相关专业</h3>
+            <span class="period">20XX — 20XX</span>
+          </div>
+          <p class="company">本科 · XX 大学</p>
+          <ul>
+            <li>主修：自动控制原理、过程控制、质量管理等课程</li>
+            <li>在校期间参与自动化项目实训，积累工业现场实战经验</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="resume-section">
+        <h2 class="resume-section-title">核心技能</h2>
+        <div class="skills-grid-resume">
+          <div class="skill-group">
+            <h4>🔬 质量管理</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">8D 问题解决</span>
+              <span class="skill-tag">SPC 统计过程控制</span>
+              <span class="skill-tag">FMEA 失效模式分析</span>
+              <span class="skill-tag">ISO 9001 体系</span>
+              <span class="skill-tag">IATF 16949</span>
+              <span class="skill-tag">CQE 认证</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>⚙️ 工业自动化</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">DCS 系统集成</span>
+              <span class="skill-tag">SIS 安全仪表</span>
+              <span class="skill-tag">流程工业知识</span>
+              <span class="skill-tag">PLC/HMI 基础</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>💻 工具与开发</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Linux</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>🌐 语言与软技能</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">英语（CET-6）</span>
+              <span class="skill-tag">客户沟通</span>
+              <span class="skill-tag">跨部门协作</span>
+              <span class="skill-tag">项目管理</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="resume-section">
+        <h2 class="resume-section-title">代表性项目</h2>
+        
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>工业 8D 质量分析工具</h3>
+            <span class="period">2026</span>
+          </div>
+          <p class="company">自研 Web 工具 · 已部署公网</p>
+          <ul>
+            <li>自研 Web 端结构化 8D 报告生成系统，支持中英文双语、自定义模板上传、一键导出</li>
+            <li>技术栈：Python + FastAPI + Docker + 响应式 Web 前端</li>
+            <li>已部署至公网（8d.arayucofe.com.cn），内部使用中</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Certifications -->
+      <section class="resume-section">
+        <h2 class="resume-section-title">证书与培训</h2>
+        <div class="resume-item">
+          <ul>
+            <li><strong>CQE 注册质量工程师</strong> — 美国质量协会（ASQ）或同等认证</li>
+            <li><strong>ISO 9001 内审员</strong> — 质量管理体系内审资质</li>
+            <li><strong>SPC 统计过程控制实战培训</strong> — 工业现场应用能力认证</li>
+            <li><strong>8D 问题解决方法论</strong> — 客户质量项目管理实战</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" style="margin-top: 60px; padding: 32px 0;">
+        <p>&copy; 2026 yu. Built with ❤️ and deployed on GitHub Pages.</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
