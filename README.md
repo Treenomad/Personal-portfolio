@@ -1,16 +1,16 @@
 # yu个人作品集网站
 
-> **VB-002** — 工业自动化解决方案专家个人品牌展示站，通过 GitHub Pages 免费托管。
+> **VBC-003** — 工业自动化解决方案专家个人品牌展示站，通过 GitHub Pages 免费托管。
 
 ## 🌐 访问地址
 
-- **主站**: [https://2689872077.github.io/personal-portfolio/](https://2689872077.github.io/personal-portfolio/)
-- **仓库**: [https://github.com/2689872077/personal-portfolio](https://github.com/2689872077/personal-portfolio)
+- **主站**: [https://treenomad.github.io/Personal-portfolio/](https://treenomad.github.io/Personal-portfolio/)
+- **仓库**: [https://github.com/Treenomad/Personal-portfolio](https://github.com/Treenomad/Personal-portfolio)
 
 ## 📁 项目结构
 
 ```
-VB002-personal-portfolio/
+VBC003-personal-portfolio/
 ├── index.html              # 主页面（单页应用）
 ├── deploy.sh               # 一键部署脚本
 ├── README.md               # 本文件
