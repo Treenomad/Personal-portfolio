@@ -81,7 +81,7 @@
   // ===== Scroll-triggered Fade-in Animation =====
   function setupFadeIn() {
     var elements = document.querySelectorAll(
-      '.project-card, .highlight-card, .contact-card, .skill-category'
+      '.project-card, .highlight-card, .contact-card, .skill-category, .writing-card, .pipeline-step'
     );
     elements.forEach(function (el) {
       el.classList.add('fade-in');
