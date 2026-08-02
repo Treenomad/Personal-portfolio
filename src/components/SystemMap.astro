@@ -1,0 +1,49 @@
+---
+import type { Lang } from '../data/site';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = lang === 'zh' ? {
+  kicker: '从问题到运行',
+  title: '一个方案只有进入真实工作流、经得起现场约束，才开始产生价值。',
+  steps: [
+    ['01', '进入问题现场', '理解设备、工艺、人员与现有工作方式'],
+    ['02', '定义决策边界', '明确目标、证据、风险、责任与成功标准'],
+    ['03', '构建最小闭环', '连接数据、模型、界面与人工确认'],
+    ['04', '部署、观察、迭代', '记录运行反馈，完善规则并完成可持续交接'],
+  ],
+  center: 'PROBLEM\nTO\nOPERATION',
+} : {
+  kicker: 'FROM PROBLEM TO OPERATION',
+  title: 'A solution starts creating value only when it enters real work and survives field constraints.',
+  steps: [
+    ['01', 'Enter the field problem', 'Understand equipment, process, people and current work'],
+    ['02', 'Define decision boundaries', 'Clarify outcomes, evidence, risk, ownership and success'],
+    ['03', 'Build the smallest loop', 'Connect data, models, interfaces and human confirmation'],
+    ['04', 'Deploy, observe, iterate', 'Capture operational feedback, improve rules and enable handover'],
+  ],
+  center: 'PROBLEM\nTO\nOPERATION',
+};
+---
+
+<section class="system-map-section">
+  <div class="shell system-map-grid">
+    <div class="system-map-intro">
+      <div class="eyebrow light"><span></span>{t.kicker}</div>
+      <h2>{t.title}</h2>
+      <div class="map-orbit" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="map-core">{t.center.split('\n').map((line) => <span>{line}</span>)}</div>
+        <i class="node node-one"></i><i class="node node-two"></i><i class="node node-three"></i>
+      </div>
+    </div>
+    <ol class="system-steps">
+      {t.steps.map(([number, title, description]) => (
+        <li>
+          <span class="step-number">{number}</span>
+          <div><h3>{title}</h3><p>{description}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

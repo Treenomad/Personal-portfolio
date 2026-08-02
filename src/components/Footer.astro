@@ -1,0 +1,19 @@
+---
+import { copy, site, type Lang } from '../data/site';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const text = copy[lang];
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <div class="footer-name">{site.nameEn}</div>
+      <p>{text.footerLine}</p>
+    </div>
+    <div class="footer-meta">
+      <span>{site.domain}</span>
+      <span>© {new Date().getFullYear()}</span>
+    </div>
+  </div>
+</footer>
