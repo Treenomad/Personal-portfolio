@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { Lang } from '../data/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const posts = (await getCollection('insights', ({ data }) => !data.draft && data.lang === lang))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const prefix = lang === 'zh' ? '/insights/' : '/en/insights/';
+const t = lang === 'zh' ? {
+  title: '深度文章｜freid 的工业 AI 与复杂系统笔记',
+  description: '关于工业 AI、现场系统、技术落地和知识工程的深度文章。',
+  heading: '把复杂问题写到可以被检验。',
+  lead: '这里记录我对工业现场、AI 系统与落地方法的长期思考。文章由我本人持续撰写并发布。',
+  emptyTitle: '第一篇深度文章正在准备中',
+  emptyText: '文章系统已经就绪。新增一篇 Markdown 文件并将 draft 设为 false，即可出现在这里。',
+  directions: [['01', '工业事件与系统可靠性'], ['02', '工业 AI 的运行边界'], ['03', '从原型到真实运行']],
+} : {
+  title: 'Insights — FREID Industrial AI',
+  description: 'Long-form writing on Industrial AI, field systems, technology delivery and knowledge engineering.',
+  heading: 'Write complex problems until they can be tested.',
+  lead: 'Long-form notes on industrial reality, AI systems and delivery methods—written and published here by me.',
+  emptyTitle: 'The first long-form essay is in progress',
+  emptyText: 'The publishing system is ready. Add a Markdown file and set draft to false to publish it here.',
+  directions: [['01', 'Industrial events & reliability'], ['02', 'Operational boundaries of Industrial AI'], ['03', 'From prototype to operation']],
+};
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang} canonicalPath={prefix}>
+  <section class="insights-page">
+    <div class="shell">
+      <div class="page-heading"><h1>{t.heading}</h1><p>{t.lead}</p></div>
+      {posts.length > 0 ? (
+        <div class="article-list">
+          {posts.map((post) => (
+            <article class="article-row">
+              <time datetime={post.data.publishedAt.toISOString()}>{post.data.publishedAt.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-GB')}</time>
+              <div><h2><a href={`${prefix}${post.id}/`}>{post.data.title}</a></h2><p>{post.data.description}</p></div>
+              <a class="round-link" href={`${prefix}${post.id}/`} aria-label={post.data.title}><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state"><div><strong>{t.emptyTitle}</strong><p>{t.emptyText}</p></div></div>
+      )}
+      <div class="writing-directions">
+        {t.directions.map(([index, title]) => <article class="direction"><span>{index}</span><h2>{title}</h2></article>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

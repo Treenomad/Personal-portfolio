@@ -1,0 +1,190 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from './SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+import SystemMap from './SystemMap.astro';
+import { workItems } from '../data/work';
+import type { Lang } from '../data/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const published = (await getCollection('insights', ({ data }) => !data.draft && data.lang === lang))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const latest = published[0];
+const latestHref = latest
+  ? `${lang === 'zh' ? '/insights/' : '/en/insights/'}${latest.id}/`
+  : (lang === 'zh' ? '/insights/' : '/en/insights/');
+
+const t = lang === 'zh' ? {
+  title: 'freid｜工业现场、AI 系统与落地方法',
+  description: 'freid 的工业 AI 研究与实践网站：从真实问题出发，连接现场、数据、软件与人的工作方式。',
+  kicker: 'Industrial Systems · Applied AI · Field Practice',
+  heroLine1: '走进真实问题，',
+  heroLine2: '把 AI ',
+  heroLine3: '做成系统。',
+  heroLede: '我从现场约束和真实决策出发，连接设备、数据、软件与人的工作方式；先把问题定义清楚，再通过快速原型、系统连接与反馈验证，逐步推进到可运行的工业智能。',
+  heroPrimary: '查看研究与实践',
+  heroSecondary: '了解工作方法',
+  visualLabel: 'CONTEXT / BUILD / OPERATION',
+  signals: ['现场问题定义', '跨系统连接', '快速原型验证', '运行反馈闭环'],
+  workEyebrow: 'RESEARCH & PRACTICE / 研究与实践',
+  workTitle: '让判断可以被看见，让方案经得起真实约束。',
+  workDescription: '这里记录问题如何被拆解、方案如何被构建，以及哪些边界仍需验证。案例采用匿名化表达，不使用未经验证的指标装饰结果。',
+  capEyebrow: 'WORKING METHOD / 工作方法',
+  capTitle: '从模糊现场到可运行系统，我关注的是整条落地链路。',
+  capDescription: '工业 AI 不是孤立模型，而是问题、数据、软件、人员与运行责任共同组成的系统。',
+  capabilities: [
+    ['01', '进入问题现场', '理解谁在什么情境下做什么决策，厘清工艺、设备、组织与安全约束。', ['用户情境', '故障链路', '系统边界']],
+    ['02', '定义可交付问题', '把模糊诉求压缩成可验证目标，明确证据、错误成本、责任边界与成功标准。', ['问题定义', '评价框架', '风险控制']],
+    ['03', '构建最小闭环', '连接现有数据与工作流，尽早做出可用原型，让真实使用推动下一轮设计。', ['数据接口', 'AI 工作流', '人机协同']],
+    ['04', '推进到真实运行', '把部署、监测、回退、交接和反馈放进方案，从一次演示走向持续使用。', ['系统集成', '运行反馈', '持续迭代']],
+  ],
+  insightEyebrow: 'INSIGHTS / 深度文章',
+  insightTitle: '深度写作，是把复杂问题压缩成可讨论、可验证的结构。',
+  insightDescription: '这里将持续发布工业 AI、现场系统、技术落地与知识工程的深度文章。',
+  latestMeta: latest ? `${latest.data.category} / ${latest.data.publishedAt.getFullYear()}` : 'EDITORIAL NOTE / 即将发布',
+  latestTitle: latest?.data.title ?? '为什么工业 AI 不能脱离系统边界？',
+  latestDescription: latest?.data.description ?? '从数据来源、错误成本、责任边界与现场反馈出发，建立比“模型精度”更完整的评价框架。',
+  latestLink: latest ? '阅读全文' : '查看写作计划',
+  topics: [
+    ['FIELD NOTES / 现场问题', '从工业事件中理解约束、证据与决策边界'],
+    ['BUILD & OPERATE / 构建与运行', 'AI 如何从原型进入真实的设备、质量与运营流程'],
+  ],
+  aboutIndex: 'ABOUT / 04',
+  aboutTitle: '我是 freid。我在这里持续练习一件事：把复杂的工业问题理解透，再把技术推进到真实使用。',
+  aboutP1: '我关心现场人员正在解决什么、现有系统允许什么、证据是否足够，以及一个方案如何嵌入真实工作流。技术选择应该服务于这些问题，而不是反过来定义问题。',
+  aboutP2: '现阶段，我正把工业事件分析、知识系统与 AI 工作流连接起来，持续形成可以讨论、验证、构建并迭代的实践方法。',
+  principle: '先与真实问题站在一起，再决定该用什么技术。',
+} : {
+  title: 'FREID — Industrial Reality, AI Systems & Delivery',
+  description: 'FREID’s Industrial AI research and practice site—starting with real problems and connecting field context, data, software and human work.',
+  kicker: 'Industrial Systems · Applied AI · Field Practice',
+  heroLine1: 'Enter the real problem.',
+  heroLine2: 'Build AI ',
+  heroLine3: 'into systems.',
+  heroLede: 'I start with field constraints and real decisions, connecting equipment, data, software and human work. The path runs from clear problem framing to rapid prototypes, system integration and operational feedback.',
+  heroPrimary: 'Explore research & practice',
+  heroSecondary: 'See the working method',
+  visualLabel: 'CONTEXT / BUILD / OPERATION',
+  signals: ['Field problem framing', 'Cross-system integration', 'Rapid validation', 'Operational feedback'],
+  workEyebrow: 'RESEARCH & PRACTICE',
+  workTitle: 'Make the reasoning visible. Make the solution survive real constraints.',
+  workDescription: 'These notes show how problems are framed, solutions are built and boundaries remain testable. Cases are anonymized and avoid unverified performance claims.',
+  capEyebrow: 'WORKING METHOD',
+  capTitle: 'From an ambiguous field problem to an operational system, the whole delivery path matters.',
+  capDescription: 'Industrial AI is not an isolated model. It is a system of problems, data, software, people and operational ownership.',
+  capabilities: [
+    ['01', 'Enter the field problem', 'Understand who makes which decision, under what equipment, process, organizational and safety constraints.', ['User context', 'Failure chains', 'System boundaries']],
+    ['02', 'Frame a deliverable problem', 'Turn an ambiguous need into testable outcomes, evidence, error cost, ownership and success criteria.', ['Problem framing', 'Evaluation', 'Risk controls']],
+    ['03', 'Build the smallest loop', 'Connect existing data and workflows, ship a useful prototype early and let real use shape the next iteration.', ['Data interfaces', 'AI workflows', 'Human-in-the-loop']],
+    ['04', 'Move into operation', 'Design deployment, monitoring, fallback, handover and feedback so a demo can become sustained use.', ['Integration', 'Operational feedback', 'Iteration']],
+  ],
+  insightEyebrow: 'INSIGHTS',
+  insightTitle: 'Long-form writing turns complex problems into structures that can be discussed and tested.',
+  insightDescription: 'Essays on Industrial AI, field systems, technology delivery and knowledge engineering will be published here.',
+  latestMeta: latest ? `${latest.data.category} / ${latest.data.publishedAt.getFullYear()}` : 'EDITORIAL NOTE / COMING SOON',
+  latestTitle: latest?.data.title ?? 'Why Industrial AI cannot ignore system boundaries',
+  latestDescription: latest?.data.description ?? 'A framework beyond model accuracy—starting from data origin, error cost, ownership and field feedback.',
+  latestLink: latest ? 'Read essay' : 'View writing roadmap',
+  topics: [
+    ['FIELD NOTES', 'Understanding constraints, evidence and decision boundaries through industrial events'],
+    ['BUILD & OPERATE', 'How AI moves from a prototype into real equipment, quality and operational workflows'],
+  ],
+  aboutIndex: 'ABOUT / 04',
+  aboutTitle: 'I’m freid. I use this space to practice one thing continuously: understand hard industrial problems, then move technology into real use.',
+  aboutP1: 'I care about what field users are solving, what existing systems allow, whether the evidence is sufficient and how a solution fits into actual work. Technology should serve those questions, not define them.',
+  aboutP2: 'I am connecting industrial event analysis, knowledge systems and AI workflows into methods that can be discussed, tested, built and improved.',
+  principle: 'Stand with the real problem first. Choose the technology second.',
+};
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang} canonicalPath={lang === 'zh' ? '/' : '/en/'}>
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div>
+        <div class="hero-kicker">{t.kicker}</div>
+        <h1>{t.heroLine1}<br /><span class="outline">{t.heroLine2}</span><span class="solid">{t.heroLine3}</span></h1>
+        <p class="hero-lede">{t.heroLede}</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="#research">{t.heroPrimary}</a>
+          <a class="button button-ghost" href="#systems">{t.heroSecondary}</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-frame">
+          <span class="visual-label">{t.visualLabel}</span>
+          <div class="visual-axis"></div>
+          <div class="visual-core"></div>
+          <div class="visual-data">
+            <span>CONTEXT <b>READY</b></span>
+            <span>BOUNDARY <b>SET</b></span>
+            <span>FEEDBACK <b>LIVE</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="signal-strip">
+    <div class="shell signal-list">{t.signals.map((signal) => <span>{signal}</span>)}</div>
+  </div>
+
+  <section class="section" id="research">
+    <div class="shell">
+      <SectionHeading eyebrow={t.workEyebrow} title={t.workTitle} description={t.workDescription} />
+      <div class="project-grid">{workItems.map((item) => <ProjectCard item={item} lang={lang} />)}</div>
+    </div>
+  </section>
+
+  <div id="systems"><SystemMap lang={lang} /></div>
+
+  <section class="section" id="capabilities">
+    <div class="shell">
+      <SectionHeading eyebrow={t.capEyebrow} title={t.capTitle} description={t.capDescription} />
+      <div class="capability-grid">
+        {t.capabilities.map(([number, title, description, tags]) => (
+          <article class="capability">
+            <span class="capability-number">{number}</span>
+            <div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <ul class="tag-list">{(tags as string[]).map((tag) => <li>{tag}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="insights">
+    <div class="shell">
+      <SectionHeading eyebrow={t.insightEyebrow} title={t.insightTitle} description={t.insightDescription} />
+      <div class="insight-preview">
+        <article class="insight-main">
+          <span class="meta">{t.latestMeta}</span>
+          <h3>{t.latestTitle}</h3>
+          <p>{t.latestDescription}</p>
+          <a class="text-link" href={latestHref}>{t.latestLink}</a>
+        </article>
+        <div class="insight-side">
+          {t.topics.map(([meta, title]) => <article class="insight-topic"><span class="meta">{meta}</span><h3>{title}</h3></article>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="shell about-grid">
+      <span class="about-index">{t.aboutIndex}</span>
+      <div class="about-content">
+        <h2>{t.aboutTitle}</h2>
+        <div class="about-columns">
+          <div><p>{t.aboutP1}</p><p>{t.aboutP2}</p></div>
+          <p class="about-principle"><strong>{lang === 'zh' ? '我的原则：' : 'A principle:'}</strong><br />{t.principle}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

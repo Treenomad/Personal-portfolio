@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../data/site';
+
+interface Props {
+  post: CollectionEntry<'insights'>;
+  lang: Lang;
+}
+const { post, lang } = Astro.props;
+const prefix = lang === 'zh' ? '/insights/' : '/en/insights/';
+const label = lang === 'zh' ? '返回全部文章' : 'Back to all insights';
+---
+
+<BaseLayout title={`${post.data.title} — FREID`} description={post.data.description} lang={lang} canonicalPath={`${prefix}${post.id}/`}>
+  <header class="article-hero">
+    <div class="shell article-hero-inner">
+      <div class="breadcrumb"><a href={prefix}>{label}</a><span>/</span><span>{post.data.category}</span></div>
+      <h1>{post.data.title}</h1>
+      <p class="article-description">{post.data.description}</p>
+      <div class="article-meta">
+        <time datetime={post.data.publishedAt.toISOString()}>{post.data.publishedAt.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-GB')}</time>
+        <span>{post.data.tags.join(' / ')}</span>
+      </div>
+    </div>
+  </header>
+  <article class="article-content"><slot /></article>
+</BaseLayout>

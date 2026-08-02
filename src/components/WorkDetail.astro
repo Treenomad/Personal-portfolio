@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { WorkItem } from '../data/work';
+import type { Lang } from '../data/site';
+
+interface Props { item: WorkItem; lang: Lang }
+const { item, lang } = Astro.props;
+const base = lang === 'zh' ? '' : '/en';
+const home = lang === 'zh' ? '首页' : 'Home';
+const work = lang === 'zh' ? '研究' : 'Research';
+const labels = lang === 'zh' ? {
+  question: '核心问题', context: '问题背景', approach: '分析方法', outcome: '形成结果', boundary: '公开边界', next: '返回全部工作',
+} : {
+  question: 'Core question', context: 'Context', approach: 'Approach', outcome: 'Outcome', boundary: 'Public boundary', next: 'Back to all work',
+};
+const canonicalPath = `${base}/work/${item.slug}/`;
+---
+
+<BaseLayout title={`${item.title[lang]} — FREID`} description={item.summary[lang]} lang={lang} canonicalPath={canonicalPath}>
+  <header class="subpage-hero">
+    <div class="shell">
+      <div class="breadcrumb"><a href={`${base}/`}>{home}</a><span>/</span><a href={`${base}/#research`}>{work}</a><span>/</span><span>{item.index}</span></div>
+      <span class="status-chip"><i></i>{item.status[lang]}</span>
+      <h1>{item.title[lang]}</h1>
+      <p class="lead">{item.summary[lang]}</p>
+      <div class="subpage-meta">{item.disciplines[lang].map((tag) => <span>{tag}</span>)}</div>
+    </div>
+  </header>
+
+  <div class="case-body shell">
+    <section class="case-question">
+      <span class="case-label">{labels.question}</span>
+      <blockquote>{item.question[lang]}</blockquote>
+    </section>
+    <section class="case-section">
+      <span class="case-label">{labels.context}</span>
+      <div class="case-section-copy"><p>{item.context[lang]}</p></div>
+    </section>
+    <section class="case-section">
+      <span class="case-label">{labels.approach}</span>
+      <div class="case-section-copy">
+        <div class="approach-grid">
+          {item.approach[lang].map((step, index) => (
+            <article class="approach-step"><span>0{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="case-section">
+      <span class="case-label">{labels.outcome}</span>
+      <div class="case-section-copy"><p>{item.outcome[lang]}</p></div>
+    </section>
+    <section class="case-section">
+      <span class="case-label">{labels.boundary}</span>
+      <div class="case-section-copy"><div class="boundary-note">{item.boundary[lang]}</div></div>
+    </section>
+    <div class="case-next"><a class="button" href={`${base}/#research`}>{labels.next}</a></div>
+  </div>
+</BaseLayout>

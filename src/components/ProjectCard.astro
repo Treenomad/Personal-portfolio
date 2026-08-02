@@ -1,0 +1,27 @@
+---
+import type { Lang } from '../data/site';
+import type { WorkItem } from '../data/work';
+
+interface Props { item: WorkItem; lang: Lang }
+const { item, lang } = Astro.props;
+const href = lang === 'zh' ? `/work/${item.slug}/` : `/en/work/${item.slug}/`;
+---
+
+<article class="project-card">
+  <div class="project-card-top">
+    <span class="project-number">{item.index}</span>
+    <span class="status-chip"><i></i>{item.status[lang]}</span>
+  </div>
+  <div>
+    <h3><a href={href}>{item.title[lang]}</a></h3>
+    <p>{item.summary[lang]}</p>
+  </div>
+  <div class="project-card-bottom">
+    <ul class="tag-list" aria-label={lang === 'zh' ? '领域' : 'Disciplines'}>
+      {item.disciplines[lang].map((tag) => <li>{tag}</li>)}
+    </ul>
+    <a class="round-link" href={href} aria-label={lang === 'zh' ? `查看${item.title[lang]}` : `View ${item.title[lang]}`}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+    </a>
+  </div>
+</article>
